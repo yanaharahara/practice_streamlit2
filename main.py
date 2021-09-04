@@ -69,7 +69,7 @@ df = pd.DataFrame({
 })     
 
 #dataframe or table
-st.dataframe(df.style.highlight_max(axis=0))
+st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
 
 
