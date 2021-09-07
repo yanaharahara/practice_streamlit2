@@ -1,12 +1,15 @@
+#音声認識ありかも(目の不自由な人に音声で混雑状況を伝える)
 import streamlit as st
-import datetime
+from datetime import datetime
 import pandas as pd
+import winsound
 #import time
-#6行目は写真挿入などの時に使うかも
+#7行目は写真挿入などの時に使うかも
 #import streamlit.components.v1 as stc
 while(True):
     i = 50
     break
+
 st.title('混雑状況確認アプリ')
 
 st.write('始めに入退室ボタンを押してください')
@@ -50,8 +53,11 @@ if right_button:
     latest_iteration.text(f'現在の施設内の人数 {i-1}')
     bar.progress(i-1)
 
-now = datetime.datetime.now()
+#now = datetime.datetime.now()
+#st.write(now.strftime('現在の日時は、%Y年%m月%d日 %H:%M:%S'))
+now = datetime.today()
 st.write(now.strftime('現在の日時は、%Y年%m月%d日 %H:%M:%S'))
+
 
 #この施設の混雑度具合はアンケートを取る
 #時間ごとに混んでいる施設をアドバイス
@@ -69,7 +75,7 @@ df = pd.DataFrame({
 })     
 
 #dataframe or table
-st.dataframe(df,width=10000,height=10000)
+st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
 
 
@@ -80,6 +86,29 @@ expander2 = st.expander('食堂のすいている時間帯を教えてくださ�
 expander2.write('糖朝については2限と3限の間の時間帯以外は基本的に空いています。その時間帯を狙いましょう。')
 expander3 = st.expander('表の見方を教えてください')
 expander3.write('1列目が場所、2列目がその場所の混雑度を表しています。列名のところをクリックすると、ソートもできるのでランキング形式にしてみるとさらに見やすくなります。')
+
+#リンクの設定
+st.write('iniadのホームページは下記のリンクから')
+st.markdown('<a href="https://www.iniad.org/">iniadホームページ</a>',unsafe_allow_html=True)
+
+#音声の再生
+#st.audio('音声ファイルの名前')
+
+#音声の自動再生(この方法だとボタンを押す度に反応してしまう)
+#import winsound
+#winsound.PlaySound('音声ファイルの名前.wav', winsound.SND_FILENAME)
+
+#音声の自動再生方法2
+#from fabric.api import runs_once
+#@runs_once
+#def play():
+    #winsound.PlaySound('新音声データ.wav', winsound.SND_FILENAME)
+#def play2():
+    #play()
+#play2()
+
+
+
 
 
 #stc.html('<img width="200" alt="test" src="https://cafe-mickey.com/coffee-life/wp-content/uploads/2021/02/image.gif">')
