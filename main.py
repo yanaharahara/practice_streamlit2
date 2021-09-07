@@ -1,10 +1,11 @@
 #音声認識ありかも(目の不自由な人に音声で混雑状況を伝える)
 import streamlit as st
-from datetime import datetime
+import datetime
 import pandas as pd
+import pytz
 #import winsound
 #import time
-#7行目は写真挿入などの時に使うかも
+#9行目は写真挿入などの時に使うかも
 #import streamlit.components.v1 as stc
 while(True):
     i = 50
@@ -55,7 +56,7 @@ if right_button:
 
 #now = datetime.datetime.now()
 #st.write(now.strftime('現在の日時は、%Y年%m月%d日 %H:%M:%S'))
-now = datetime.today()
+now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
 st.write(now.strftime('現在の日時は、%Y年%m月%d日 %H:%M:%S'))
 
 
@@ -87,7 +88,7 @@ expander2.write('糖朝については2限と3限の間の時間帯以外は基�
 expander3 = st.expander('表の見方を教えてください')
 expander3.write('1列目が場所、2列目がその場所の混雑度を表しています。列名のところをクリックすると、ソートもできるのでランキング形式にしてみるとさらに見やすくなります。')
 
-#リンクの設定
+#リンクの設定(ここに建物のホームページのリンクを貼る)
 st.write('iniadのホームページは下記のリンクから')
 st.markdown('<a href="https://www.iniad.org/">iniadホームページ</a>',unsafe_allow_html=True)
 
