@@ -2,7 +2,7 @@
 import streamlit as st
 from datetime import datetime
 import pandas as pd
-import winsound
+#import winsound
 #import time
 #7行目は写真挿入などの時に使うかも
 #import streamlit.components.v1 as stc
