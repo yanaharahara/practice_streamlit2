@@ -7,11 +7,19 @@ import pytz
 #import time
 #9行目は写真挿入などの時に使うかも
 #import streamlit.components.v1 as stc
+from PIL import Image
 while(True):
     i = 50
     break
 
-st.title('混雑状況確認アプリ')
+#バルーン
+#st.balloons()
+
+#ロゴの挿入
+image = Image.open('team1-logo.png')
+st.image(image,use_column_width=True)
+
+#st.title('混雑状況確認アプリ')
 
 st.write('始めに入退室ボタンを押してください')
 
@@ -22,6 +30,7 @@ right_button = right_column.button('退室')
 
 if left_button:
     st.write('iniadへようこそ')
+
 if right_button:
     st.write('またのご利用お待ちしております。')
 
@@ -92,6 +101,14 @@ expander3.write('1列目が場所、2列目がその場所の混雑度を表し�
 st.write('iniadのホームページは下記のリンクから')
 st.markdown('<a href="https://www.iniad.org/">iniadホームページ</a>',unsafe_allow_html=True)
 
+
+
+#待ち時間の表示
+#import time
+#with st.spinner('Wait for it...'):
+    #time.sleep(5)
+#st.success('Done!') 
+   
 #音声の再生
 #st.audio('音声ファイルの名前')
 
