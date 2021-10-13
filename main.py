@@ -15,6 +15,7 @@ while(True):
 #バルーン
 #st.balloons()
 
+
 #ロゴの挿入
 image = Image.open('team1-logo.png')
 st.image(image,use_column_width=True)
@@ -30,6 +31,7 @@ right_button = right_column.button('退室')
 
 if left_button:
     st.write('iniadへようこそ')
+    
 
 if right_button:
     st.write('またのご利用お待ちしております。')
