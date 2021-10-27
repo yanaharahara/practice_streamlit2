@@ -79,32 +79,32 @@ def english():
     if now.hour == 12:
         st.write('Currently, the cafeteria and Totyo tend to be crowded.')
         df = pd.DataFrame({
-        '場所':['B:Lecture room','F:Totyo','C:INIAD Hall','E:Cafeteria','D:Presentation Hub','A:Media Center'],
-        '混雑度(MAXが100)':[10,100,30,100,60,10]
+        'Place':['B:Lecture room','F:Totyo','C:INIAD Hall','E:Cafeteria','D:Presentation Hub','A:Media Center'],
+        'Congestion rate(Max=100)':[10,100,30,100,60,10]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
     elif now.hour >= 8 and now.hour <= 11:
         st.write('Currently, the presentation hub on the first floor tends to be crowded')
         df = pd.DataFrame({
-        '場所':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
-        '混雑度(MAXが100)':[40,90,10,90,100,10]
+        'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
+        'Congestion rate(Max=100)':[40,90,10,90,100,10]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
     elif now.hour >= 13  and now.hour <= 17:
         st.write('At the moment, the cafeteria tends to be crowded,  \nbut Totyo is relatively empty..')
         df = pd.DataFrame({
-        '場所':['C:Lecture room','D:Totyo','B:INIAD Hall','F:Cafeteria','E:Presentation Hub','A:Media Center'],
-        '混雑度(MAXが100)':[15,50,10,100,70,5]
+        'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','F:Cafeteria','E:Presentation Hub','A:Media Center'],
+        'Congestion rate(Max=100)':[15,50,10,100,70,5]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
     elif now.hour >= 18  and now.hour <= 19:
         st.write('The presentation hub on the first floor tends to be crowded at this time of day  \nThe other facilities are relatively empty.')
         df = pd.DataFrame({
-        '場所':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
-        '混雑度(MAXが100)':[10,40,10,80,100,5]
+        'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
+        'Congestion rate(Max=100)':[10,40,10,80,100,5]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
@@ -275,12 +275,12 @@ def japanese():
     #stc.html('<img width="200" alt="test" src="https://cafe-mickey.com/coffee-life/wp-content/uploads/2021/02/image.gif">')
 
 
-lang = st.selectbox("言語を選択してください。please choose language",("日本語","英語"))
+lang = st.selectbox("言語を選択してください。please choose language",("日本語","English"))
 
 #ボタンが押されたら
 if lang == "日本語":
     japanese()
-elif lang == "英語":
+elif lang == "English":
     english()
 
 else:
