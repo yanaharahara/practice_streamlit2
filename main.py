@@ -80,7 +80,7 @@ def english():
         st.write('Currently, the cafeteria and Totyo tend to be crowded.')
         df = pd.DataFrame({
         'Place':['B:Lecture room','F:Totyo','C:INIAD Hall','E:Cafeteria','D:Presentation Hub','A:Media Center'],
-        'Congestion rate(Max=100)':[10,100,30,100,60,10]
+        'Congestion (Max=100)':[10,100,30,100,60,10]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
@@ -88,7 +88,7 @@ def english():
         st.write('Currently, the presentation hub on the first floor tends to be crowded')
         df = pd.DataFrame({
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
-        'Congestion rate(Max=100)':[40,90,10,90,100,10]
+        'Congestion (Max=100)':[40,90,10,90,100,10]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
@@ -96,7 +96,7 @@ def english():
         st.write('At the moment, the cafeteria tends to be crowded,  \nbut Totyo is relatively empty..')
         df = pd.DataFrame({
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','F:Cafeteria','E:Presentation Hub','A:Media Center'],
-        'Congestion rate(Max=100)':[15,50,10,100,70,5]
+        'Congestion (Max=100)':[15,50,10,100,70,5]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
@@ -104,7 +104,7 @@ def english():
         st.write('The presentation hub on the first floor tends to be crowded at this time of day  \nThe other facilities are relatively empty.')
         df = pd.DataFrame({
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
-        'Congestion rate(Max=100)':[10,40,10,80,100,5]
+        'Congestion (Max=100)':[10,40,10,80,100,5]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
