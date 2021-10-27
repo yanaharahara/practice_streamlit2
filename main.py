@@ -25,19 +25,19 @@ def english():
 
     #st.title('混雑状況確認アプリ')
 
-    st.write('始めに入退室ボタンを押してください')
+    st.write('First, please press the Enter / Exit button.')
 
     #checkbox?
     left_column,right_column = st.columns(2)
-    left_button = left_column.button('入室')
-    right_button = right_column.button('退室')
+    left_button = left_column.button('Entry')
+    right_button = right_column.button('Exit')
 
     if left_button:
-        st.write('iniadへようこそ')
+        st.write('Welcome to INIAD')
         
 
     if right_button:
-        st.write('またのご利用お待ちしております。')
+        st.write('We look forward to seeing you again.')
 
 
     latest_iteration = st.empty()
@@ -45,72 +45,72 @@ def english():
 
     if left_button:
         if i >= 30 and i <= 49:
-            latest_iteration.text(f'現在の施設内の人数 {i+1}')
-            st.write('人が若干増えてきました')
+            latest_iteration.text(f'Current number of people in the facility {i+1}')
+            st.write('The number of people has increased slightly')
             bar.progress(i+1)
         if i >= 50 and i <= 79:
-            latest_iteration.text(f'現在の施設内の人数 {i+1}')
-            st.write('建物内で出来るだけ混雑を作らないようにしましょう')
+            latest_iteration.text(f'Current number of people in the facility {i+1}')
+            st.write('Try to create as little congestion as possible in the building.')
             bar.progress(i+1)
         if i >= 80:
-            latest_iteration.text(f'現在の施設内の人数 {i+1}')
-            st.write('かなり人流が増えてきています')
+            latest_iteration.text(f'Current number of people in the facility {i+1}')
+            st.write('The flow of people is increasing considerably.')
             bar.progress(i+1)
         if i <= 29:
-            latest_iteration.text(f'現在の施設内の人数 {i+1}')
-            st.write('比較的空いています')
+            latest_iteration.text(f'Current number of people in the facility {i+1}')
+            st.write('It is relatively empty.')
             bar.progress(i+1)
 
 
             
     if right_button:
         i+=1
-        latest_iteration.text(f'現在の施設内の人数 {i-1}')
+        latest_iteration.text(f'Current number of people in the facility {i-1}')
         bar.progress(i-1)
 
     #now = datetime.datetime.now()
     #st.write(now.strftime('現在の日時は、%Y年%m月%d日 %H:%M:%S'))
     now = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
-    st.write(now.strftime('現在の日時は、%Y年%m月%d日 %H:%M:%S'))
+    st.write(now.strftime('The current date and time are %Y/%m/%d %H:%M:%S'))
 
 
     #時間ごとに混んでいる施設をアドバイス
     #時間ごとに表示するデータフレームを変える(if now.hour >= 12 みたいに)
     #dataframe or table
     if now.hour == 12:
-        st.write('現在の時間帯は食堂と糖朝が混雑する傾向にあります')
+        st.write('Currently, the cafeteria and Totyo tend to be crowded.')
         df = pd.DataFrame({
-        '場所':['B:講義室','F:糖朝','C:INIADホール','E:食堂','D:プレゼンテーションハブ','A:メディアセンター'],
+        '場所':['B:Lecture room','F:Totyo','C:INIAD Hall','E:Cafeteria','D:Presentation Hub','A:Media Center'],
         '混雑度(MAXが100)':[10,100,30,100,60,10]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
     elif now.hour >= 8 and now.hour <= 11:
-        st.write('現在の時間帯は1階のプレゼンテーションハブが混雑する傾向にあります')
+        st.write('Currently, the presentation hub on the first floor tends to be crowded')
         df = pd.DataFrame({
-        '場所':['C:講義室','D:糖朝','B:INIADホール','E:食堂','F:プレゼンテーションハブ','A:メディアセンター'],
+        '場所':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
         '混雑度(MAXが100)':[40,90,10,90,100,10]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
     elif now.hour >= 13  and now.hour <= 17:
-        st.write('現在の時間帯は食堂が混雑する傾向にあります  \nまた、糖朝は比較的空いています')
+        st.write('At the moment, the cafeteria tends to be crowded,  \nbut Totyo is relatively empty..')
         df = pd.DataFrame({
-        '場所':['C:講義室','D:糖朝','B:INIADホール','F:食堂','E:プレゼンテーションハブ','A:メディアセンター'],
+        '場所':['C:Lecture room','D:Totyo','B:INIAD Hall','F:Cafeteria','E:Presentation Hub','A:Media Center'],
         '混雑度(MAXが100)':[15,50,10,100,70,5]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
     elif now.hour >= 18  and now.hour <= 19:
-        st.write('現在の時間帯は1階のプレゼンテーションハブが混雑する傾向にあります  \nまた、ほかの施設は比較的空いています')
+        st.write('The presentation hub on the first floor tends to be crowded at this time of day  \nThe other facilities are relatively empty.')
         df = pd.DataFrame({
-        '場所':['C:講義室','D:糖朝','B:INIADホール','E:食堂','F:プレゼンテーションハブ','A:メディアセンター'],
+        '場所':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
         '混雑度(MAXが100)':[10,40,10,80,100,5]
         })
         st.dataframe(df.style.highlight_max(axis=0),width=10000,height=10000)
 
     else:
-        st.write('現在は入構時間外になります  \n入構時間は平日8:30-20:00になります')
+        st.write('Currently, it is out of service hours. Entry hours are from 8:30am to 8:00pm on weekdays.')
         
 
 
@@ -119,17 +119,17 @@ def english():
 
 
 
-    st.title('INIADについての混雑状況のお問い合わせ')
-    expander1 = st.expander('INIAD内でどの場所が一番混雑していますか？')
-    expander1.write('時間帯にもよりますが基本的には食堂が一番混雑する可能性の高い場所になります')
-    expander2 = st.expander('糖朝の空いている時間帯を教えてください')
-    expander2.write('糖朝については2限と3限の間の時間帯以外は基本的に空いています。その時間帯を狙いましょう。')
-    expander3 = st.expander('表の見方を教えてください')
-    expander3.write('1列目が場所、2列目がその場所の混雑度を表しています。列名のところをクリックすると、ソートもできるのでランキング形式にしてみるとさらに見やすくなります。')
+    st.title('Inquire about congestion at INIAD')
+    expander1 = st.expander('Which areas in INIAD are the most crowded?')
+    expander1.write('It depends on the time of day, but basically the cafeteria will be the most likely place to be crowded.')
+    expander2 = st.expander('What is the best time to go to Totyo?')
+    expander2.write('Except for the period between 2nd and 3rd period, Totyo is basically empty. Aim for those times.')
+    expander3 = st.expander('How to read the table?')
+    expander3.write('The first column shows the location and the second column shows the congestion level of the location.  \nIf you click on the column name, you can also sort it, so it will be even easier to see it in a ranking format.')
 
     #リンクの設定(ここに建物のホームページのリンクを貼る)
-    st.write('iniadのホームページは下記のリンクから')
-    st.markdown('<a href="https://www.iniad.org/">iniadホームページ</a>',unsafe_allow_html=True)
+    st.write('INIAD Website')
+    st.markdown('<a href="https://www.iniad.org/">INIAD Website</a>',unsafe_allow_html=True)
 
 def japanese():
     i = 50
