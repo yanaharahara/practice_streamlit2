@@ -17,7 +17,6 @@ while(True):
 
 
 def english():
-    st.write("this is english page")
     i = 50
     #ロゴの挿入
     image = Image.open('team1-logo.png')
