@@ -276,17 +276,18 @@ def japanese():
     #stc.html('<img width="200" alt="test" src="https://cafe-mickey.com/coffee-life/wp-content/uploads/2021/02/image.gif">')
 
 
-left_column,right_column = st.columns(2)
-left_button = left_column.button('日本語版')
-right_button = right_column.button('英語版')
+lang = st.selectbox("言語を選択してください。please choose language",("日本語","英語"))
 
 #ボタンが押されたら
-if left_button:
+if lang == "日本語":
     japanese()
-elif right_button:
+elif lang == "英語":
     english()
 
 else:
     japanese()
+
+
+    
 
 
