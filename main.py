@@ -64,7 +64,8 @@ def english():
 
             
     if right_button:
-        st.session_state.hoge -= 1
+        if st.session_state.hoge >= 1: 
+            st.session_state.hoge -= 1
         latest_iteration.text(f'Current number of people in the facility {st.session_state.hoge}')
         bar.progress(st.session_state.hoge)
 
@@ -178,7 +179,8 @@ def japanese():
 
             
     if right_button:
-        st.session_state.hoge -= 1
+        if st.session_state.hoge >= 1:
+            st.session_state.hoge -= 1
         latest_iteration.text(f'現在の施設内の人数 {st.session_state.hoge}')
         bar.progress(st.session_state.hoge)
 
