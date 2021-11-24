@@ -8,16 +8,16 @@ import pytz
 #9行目は写真挿入などの時に使うかも
 #import streamlit.components.v1 as stc
 from PIL import Image
-while(True):
-    i = 50
-    break
+
+if "hoge" not in st.session_state:
+   st.session_state.hoge = 0
+
 
 #バルーン
 #st.balloons()
 
 
 def english():
-    i = 50
     #ロゴの挿入
     image = Image.open('app_logo.png')
     st.image(image,use_column_width=True)
@@ -43,29 +43,30 @@ def english():
     bar = st.progress(0)
 
     if left_button:
-        if i >= 30 and i <= 49:
-            latest_iteration.text(f'Current number of people in the facility {i+1}')
+        st.session_state.hoge += 1
+        if st.session_state.hoge >= 30 and st.session_state.hoge <= 49:
+            latest_iteration.text(f'Current number of people in the facility {st.session_state.hoge}')
             st.write('The number of people has increased slightly')
-            bar.progress(i+1)
-        if i >= 50 and i <= 79:
-            latest_iteration.text(f'Current number of people in the facility {i+1}')
+            bar.progress(st.session_state.hoge)
+        if st.session_state.hoge >= 50 and st.session_state.hoge <= 79:
+            latest_iteration.text(f'Current number of people in the facility {st.session_state.hoge}')
             st.write('Try to create as little congestion as possible in the building.')
-            bar.progress(i+1)
-        if i >= 80:
-            latest_iteration.text(f'Current number of people in the facility {i+1}')
+            bar.progress(st.session_state.hoge)
+        if st.session_state.hoge >= 80:
+            latest_iteration.text(f'Current number of people in the facility {st.session_state.hoge}')
             st.write('The flow of people is increasing considerably.')
-            bar.progress(i+1)
-        if i <= 29:
-            latest_iteration.text(f'Current number of people in the facility {i+1}')
+            bar.progress(st.session_state.hoge)
+        if st.session_state.hoge <= 29:
+            latest_iteration.text(f'Current number of people in the facility {st.session_state.hoge}')
             st.write('It is relatively empty.')
-            bar.progress(i+1)
+            bar.progress(st.session_state.hoge)
 
 
             
     if right_button:
-        i+=1
-        latest_iteration.text(f'Current number of people in the facility {i-1}')
-        bar.progress(i-1)
+        st.session_state.hoge -= 1
+        latest_iteration.text(f'Current number of people in the facility {st.session_state.hoge}')
+        bar.progress(st.session_state.hoge)
 
     #now = datetime.datetime.now()
     #st.write(now.strftime('現在の日時は、%Y年%m月%d日 %H:%M:%S'))
@@ -131,7 +132,6 @@ def english():
     st.markdown('<a href="https://www.iniad.org/">INIAD Website</a>',unsafe_allow_html=True)
 
 def japanese():
-    i = 50
     #ロゴの挿入
     image = Image.open('app_logo.png')
     st.image(image,use_column_width=True)
@@ -157,29 +157,30 @@ def japanese():
     bar = st.progress(0)
 
     if left_button:
-        if i >= 30 and i <= 49:
-            latest_iteration.text(f'現在の施設内の人数 {i+1}')
+        st.session_state.hoge += 1
+        if st.session_state.hoge >= 30 and st.session_state.hoge <= 49:
+            latest_iteration.text(f'現在の施設内の人数 {st.session_state.hoge}')
             st.write('人が若干増えてきました')
-            bar.progress(i+1)
-        if i >= 50 and i <= 79:
-            latest_iteration.text(f'現在の施設内の人数 {i+1}')
+            bar.progress(st.session_state.hoge)
+        if st.session_state.hoge >= 50 and st.session_state.hoge <= 79:
+            latest_iteration.text(f'現在の施設内の人数 {st.session_state.hoge}')
             st.write('建物内で出来るだけ混雑を作らないようにしましょう')
-            bar.progress(i+1)
-        if i >= 80:
-            latest_iteration.text(f'現在の施設内の人数 {i+1}')
+            bar.progress(st.session_state.hoge)
+        if st.session_state.hoge >= 80:
+            latest_iteration.text(f'現在の施設内の人数 {st.session_state.hoge}')
             st.write('かなり人流が増えてきています')
-            bar.progress(i+1)
-        if i <= 29:
-            latest_iteration.text(f'現在の施設内の人数 {i+1}')
+            bar.progress(st.session_state.hoge)
+        if st.session_state.hoge <= 29:
+            latest_iteration.text(f'現在の施設内の人数 {st.session_state.hoge}')
             st.write('比較的空いています')
-            bar.progress(i+1)
+            bar.progress(st.session_state.hoge)
 
 
             
     if right_button:
-        i+=1
-        latest_iteration.text(f'現在の施設内の人数 {i-1}')
-        bar.progress(i-1)
+        st.session_state.hoge -= 1
+        latest_iteration.text(f'現在の施設内の人数 {st.session_state.hoge}')
+        bar.progress(st.session_state.hoge)
 
     #now = datetime.datetime.now()
     #st.write(now.strftime('現在の日時は、%Y年%m月%d日 %H:%M:%S'))
