@@ -16,6 +16,15 @@ if "hoge" not in st.session_state:
 #バルーン
 #st.balloons()
 
+def color_background(x):
+            color = ""
+            if x["混雑度(MAXが100)"] >= 80:
+                color = "background-color: #FF6666; color: #FFFFFF;"
+            elif x["混雑度(MAXが100)"] <= 10:
+                color = "background-color: #659AD2; color: #FFFFFF;"
+            
+            return [color for _ in x]
+
 
 def english():
     #ロゴの挿入
@@ -84,7 +93,7 @@ def english():
         'Place':['B:Lecture room','F:Totyo','C:INIAD Hall','E:Cafeteria','D:Presentation Hub','A:Media Center'],
         'Congestion (Max=100)':[10,100,30,100,60,10]
         })
-        st.dataframe(df.style.highlight_max(axis=0,color="#FF6666"),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
 
     elif now.hour >= 8 and now.hour <= 11:
         st.write('Currently, the presentation hub on the first floor tends to be crowded')
@@ -92,7 +101,8 @@ def english():
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
         'Congestion (Max=100)':[40,90,10,90,100,10]
         })
-        st.dataframe(df.style.highlight_max(axis=0,color="#FF6666"),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
+        
 
     elif now.hour >= 13  and now.hour <= 17:
         st.write('At the moment, the cafeteria tends to be crowded,  \nbut Totyo is relatively empty..')
@@ -100,15 +110,15 @@ def english():
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','F:Cafeteria','E:Presentation Hub','A:Media Center'],
         'Congestion (Max=100)':[15,50,10,100,70,5]
         })
-        st.dataframe(df.style.highlight_max(axis=0,color="#FF6666"),width=10000,height=10000)
-
+        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
+        
     elif now.hour >= 18  and now.hour <= 19:
         st.write('The presentation hub on the first floor tends to be crowded at this time of day  \nThe other facilities are relatively empty.')
         df = pd.DataFrame({
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
         'Congestion (Max=100)':[10,40,10,80,100,5]
         })
-        st.dataframe(df.style.highlight_max(axis=0,color="#FF6666"),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
 
     else:
         st.write('Currently, it is out of service hours. Entry hours are from 8:30am to 8:00pm on weekdays.')
@@ -199,7 +209,7 @@ def japanese():
         '場所':['B:講義室','F:糖朝','C:INIADホール','E:食堂','D:プレゼンテーションハブ','A:メディアセンター'],
         '混雑度(MAXが100)':[10,100,30,100,60,10]
         })
-        st.dataframe(df.style.highlight_max(axis=0,color="#FF6666"),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
 
     elif now.hour >= 8 and now.hour <= 11:
         st.write('現在の時間帯は1階のプレゼンテーションハブが混雑する傾向にあります')
@@ -207,7 +217,7 @@ def japanese():
         '場所':['C:講義室','D:糖朝','B:INIADホール','E:食堂','F:プレゼンテーションハブ','A:メディアセンター'],
         '混雑度(MAXが100)':[40,90,10,90,100,10]
         })
-        st.dataframe(df.style.highlight_max(axis=0,color="#FF6666"),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
 
     elif now.hour >= 13  and now.hour <= 17:
         st.write('現在の時間帯は食堂が混雑する傾向にあります  \nまた、糖朝は比較的空いています')
@@ -215,15 +225,18 @@ def japanese():
         '場所':['C:講義室','D:糖朝','B:INIADホール','F:食堂','E:プレゼンテーションハブ','A:メディアセンター'],
         '混雑度(MAXが100)':[15,50,10,100,70,5]
         })
-        st.dataframe(df.style.highlight_max(axis=0,color="#FF6666"),width=10000,height=10000)
-
+        
+        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
+        #st.dataframe(df.style.highlight_max(axis=0,color="#FF6666").highlight_min(axis=0,color="#659AD2"),width=10000,height=10000)
+        #color = "background-color: #FFFFFF; color: #000000;"
+        
     elif now.hour >= 18  and now.hour <= 19:
         st.write('現在の時間帯は1階のプレゼンテーションハブが混雑する傾向にあります  \nまた、ほかの施設は比較的空いています')
         df = pd.DataFrame({
         '場所':['C:講義室','D:糖朝','B:INIADホール','E:食堂','F:プレゼンテーションハブ','A:メディアセンター'],
         '混雑度(MAXが100)':[10,40,10,80,100,5]
         })
-        st.dataframe(df.style.highlight_max(axis=0,color="#FF6666"),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
 
     else:
         st.write('現在は入構時間外になります  \n入構時間は平日8:30-20:00になります')
