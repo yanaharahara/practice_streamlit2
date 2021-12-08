@@ -12,12 +12,14 @@ from PIL import Image
 if "hoge" not in st.session_state:
    st.session_state.hoge = 0
 
-import pandas as pd
-df = pd.read_csv("../tmp/sample.csv")
-df["data"][0] += 1
-df.to_csv("../tmp/sample.csv", index = False)
-print(df)  
-st.write(df) 
+
+# import pandas as pd
+# df = pd.read_csv("sample.csv")
+# df["data"][0] += 1
+# df.to_csv("sample.csv", index = False)
+# print(df)  
+# st.write(df) 
+
 
 
 #バルーン
