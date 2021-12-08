@@ -13,9 +13,9 @@ if "hoge" not in st.session_state:
    st.session_state.hoge = 0
 
 import pandas as pd
-df = pd.read_csv("/tmp/sample.csv")
+df = pd.read_csv("tmp/sample.csv")
 df["data"][0] += 1
-df.to_csv("/tmp/sample.csv", index = False)
+df.to_csv("tmp/sample.csv", index = False)
 print(df)  
 st.write(df) 
 
