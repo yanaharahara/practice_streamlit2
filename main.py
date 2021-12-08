@@ -12,6 +12,13 @@ from PIL import Image
 if "hoge" not in st.session_state:
    st.session_state.hoge = 0
 
+import pandas as pd
+df = pd.read_csv("sample.csv")
+df["data"][0] += 1
+df.to_csv("sample.csv", index = False)
+print(df)  
+st.write(df) 
+
 
 #バルーン
 #st.balloons()
@@ -254,7 +261,10 @@ def japanese():
     expander2 = st.expander('糖朝の空いている時間帯を教えてください')
     expander2.write('糖朝については2限と3限の間の時間帯以外は基本的に空いています。その時間帯を狙いましょう。')
     expander3 = st.expander('表の見方を教えてください')
-    expander3.write('1列目が場所、2列目がその場所の混雑度を表しています。列名のところをクリックすると、ソートもできるのでランキング形式にしてみるとさらに見やすくなります。')
+    expander3.write('1列目が場所、2列目がその場所の混雑度を表しています。列名のところをクリックすると、ソートもできるのでランキング形式にしてみるとさらに見やすくなります。\nまた混雑度が80以上だと赤くなり、10以下の場所には青色にそれぞれの場所が表示されます')
+    expander4 = st.expander('混雑度を表す数値について')
+    expander4.write('現在の時間帯で一番混んでいる場所の混雑度を100としています。そして他の場所は混雑度が最大の場所と比べた結果をもとに混雑度を算出しています。')
+    
 
     #リンクの設定(ここに建物のホームページのリンクを貼る)
     st.write('iniadのホームページは下記のリンクから')
