@@ -25,6 +25,19 @@ if "hoge" not in st.session_state:
 #バルーン
 #st.balloons()
 
+import sqlite3
+conn = sqlite3.connect('database.db')
+c = conn.cursor()
+#c.execute('CREATE TABLE IF NOT EXISTS counter(num INTEGER)')
+#total = 0
+#c.execute('INSERT INTO counter(num) VALUES (?)', (total,))
+#conn.commit()
+c.execute('update counter set num = num + 1')
+conn.commit()
+c.execute('select num from counter')
+number = c.fetchall()
+st.write(number[0][0]) 
+
 def color_background(x):
             color = ""
             if x["混雑度(MAXが100)"] >= 80:
