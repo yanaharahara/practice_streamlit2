@@ -25,27 +25,38 @@ if "hoge" not in st.session_state:
 #バルーン
 #st.balloons()
 
-import sqlite3
-conn = sqlite3.connect('database.db')
-c = conn.cursor()
+# import sqlite3
+# conn = sqlite3.connect('database.db')
+# c = conn.cursor()
+# c.execute('update counter set num = num + 1')
+# conn.commit()
+# c.execute('select num from counter')
+# number = c.fetchall()
+# st.write(number[0][0]) 
+
+
+
 #c.execute('CREATE TABLE IF NOT EXISTS counter(num INTEGER)')
 #total = 0
 #c.execute('INSERT INTO counter(num) VALUES (?)', (total,))
 #conn.commit()
-c.execute('update counter set num = num + 1')
-conn.commit()
-c.execute('select num from counter')
-number = c.fetchall()
-st.write(number[0][0]) 
 
 def color_background(x):
-            color = ""
-            if x["混雑度(MAXが100)"] >= 80:
-                color = "background-color: #FF6666; color: #FFFFFF;"
-            elif x["混雑度(MAXが100)"] <= 10:
-                color = "background-color: #659AD2; color: #FFFFFF;"
-            
-            return [color for _ in x]
+        color = ""
+        if x["混雑度(MAXが100)"] >= 80:
+            color = "background-color: #FF6666; color: #FFFFFF;"
+        elif x["混雑度(MAXが100)"] <= 10:
+            color = "background-color: #659AD2; color: #FFFFFF;"
+        
+        return [color for _ in x]
+def color_background_eng(x):
+        color = ""
+        if x["Congestion (Max=100)"] >= 80:
+            color = "background-color: #FF6666; color: #FFFFFF;"
+        elif x["Congestion (Max=100)"] <= 10:
+            color = "background-color: #659AD2; color: #FFFFFF;"
+        
+        return [color for _ in x]        
 
 
 def english():
@@ -115,7 +126,7 @@ def english():
         'Place':['B:Lecture room','F:Totyo','C:INIAD Hall','E:Cafeteria','D:Presentation Hub','A:Media Center'],
         'Congestion (Max=100)':[10,100,30,100,60,10]
         })
-        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background_eng,axis=1),width=10000,height=10000)
 
     elif now.hour >= 8 and now.hour <= 11:
         st.write('Currently, the presentation hub on the first floor tends to be crowded')
@@ -123,7 +134,7 @@ def english():
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
         'Congestion (Max=100)':[40,90,10,90,100,10]
         })
-        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background_eng,axis=1),width=10000,height=10000)
         
 
     elif now.hour >= 13  and now.hour <= 17:
@@ -132,7 +143,7 @@ def english():
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','F:Cafeteria','E:Presentation Hub','A:Media Center'],
         'Congestion (Max=100)':[15,50,10,100,70,5]
         })
-        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background_eng,axis=1),width=10000,height=10000)
         
     elif now.hour >= 18  and now.hour <= 19:
         st.write('The presentation hub on the first floor tends to be crowded at this time of day  \nThe other facilities are relatively empty.')
@@ -140,7 +151,7 @@ def english():
         'Place':['C:Lecture room','D:Totyo','B:INIAD Hall','E:Cafeteria','F:Presentation Hub','A:Media Center'],
         'Congestion (Max=100)':[10,40,10,80,100,5]
         })
-        st.dataframe(df.style.apply(color_background,axis=1),width=10000,height=10000)
+        st.dataframe(df.style.apply(color_background_eng,axis=1),width=10000,height=10000)
 
     else:
         st.write('Currently, it is out of service hours. Entry hours are from 8:30am to 8:00pm on weekdays.')
@@ -158,10 +169,11 @@ def english():
     expander2 = st.expander('What is the best time to go to Totyo?')
     expander2.write('Except for the period between 2nd and 3rd period, Totyo is basically empty. Aim for those times.')
     expander3 = st.expander('How to read the table?')
-    expander3.write('The first column shows the location and the second column shows the congestion level of the location.  \nIf you click on the column name, you can also sort it, so it will be even easier to see it in a ranking format.')
+    expander3.write('The first column shows the location and the second column shows the congestion level of the location.  \nIf you click on the column name, you can also sort it, so it will be even easier to see it in a ranking format.\nIf the congestion level is above 80, the location will be shown in red, and if it is below 10, the location will be shown in blue.')
+    expander4 = st.expander('About congestion figures')
+    expander4.write('The congestion level of the most crowded place at the current time is set to 100. The other locations are calculated based on the results of comparing them to the location with the largest congestion level.')
 
     #リンクの設定(ここに建物のホームページのリンクを貼る)
-    st.write('INIAD Website')
     st.markdown('<a href="https://www.iniad.org/">INIAD Website</a>',unsafe_allow_html=True)
 
 def japanese():
