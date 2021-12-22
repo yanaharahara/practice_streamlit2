@@ -1,3 +1,6 @@
+sqlite3を使わない方法
+
+
 #音声認識ありかも(目の不自由な人に音声で混雑状況を伝える)
 import streamlit as st
 import datetime
